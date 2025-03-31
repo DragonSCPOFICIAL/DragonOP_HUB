@@ -1,4 +1,4 @@
--- Auto Farm Lógicas
+-- Auto Farm Module
 
 -- Serviços
 local Players = game:GetService("Players")
@@ -16,9 +16,7 @@ local Config = {
 -- Variáveis Locais
 local LocalPlayer = Players.LocalPlayer
 local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
-local Humanoid = Character:WaitForChild("Humanoid")
 local HumanoidRootPart = Character:WaitForChild("HumanoidRootPart")
-
 local questAccepted = false
 
 --------------------------------------------------
@@ -107,7 +105,7 @@ local function StartFarm()
         if questAccepted then
             local npcs = FindNPCs()
             if #npcs > 0 then
-                local centerPos = GetEnemyCenterPosition(npcs)
+                local centerPos = npcs[1].HumanoidRootPart.Position
                 moverParaPosicao(CFrame.new(centerPos) * CFrame.new(0, Config.SafeHeight, 0), 0)
                 PullNPCs(npcs)
             end
