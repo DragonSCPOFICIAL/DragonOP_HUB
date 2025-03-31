@@ -1,0 +1,204 @@
+-- DragonOP_HUB - Configurações do Script
+-- Configure as opções abaixo alterando entre "ativo" ou "desativado"
+
+-- Remover efeitos de morte e respawn
+if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Death") then
+    game:GetService("ReplicatedStorage").Effect.Container.Death:Destroy()
+end
+if game:GetService("ReplicatedStorage").Effect.Container:FindFirstChild("Respawn") then
+    game:GetService("ReplicatedStorage").Effect.Container.Respawn:Destroy()
+end
+
+-- Configurações Globais
+_G.Settings = {
+    -- ====================== CONFIGURAÇÕES PRINCIPAIS ======================
+    Main = {
+        -- Farm
+        ["Auto Farm Level"] = "ativo",          -- Ativa farm automático de nível
+        ["Fast Auto Farm Level"] = "ativo",     -- Acelera o farm automático
+        
+        -- Aura de Mobs
+        ["Mob Aura"] = "desativado",            -- Ataca mobs ao redor automaticamente
+        ["Distance Mob Aura"] = 1000,           -- Distância máxima para afetar mobs (máx: 5000)
+        
+        -- MUNDO 1 (Primeiro Mar)
+        ["Auto New World"] = "desativado",      -- Vai automaticamente para o segundo mundo
+        ["Auto Saber"] = "desativado",          -- Obtém Saber automaticamente
+        ["Auto Pole"] = "desativado",           -- Obtém Pole automaticamente
+        ["Auto Buy Ablility"] = "desativado",   -- Compra habilidades automaticamente
+        
+        -- MUNDO 2 (Segundo Mar)
+        ["Auto Third Sea"] = "desativado",      -- Vai automaticamente para o terceiro mundo
+        ["Auto Factory"] = "desativado",        -- Farm na fábrica automaticamente
+        ["Auto Factory Hop"] = "desativado",    -- Troca de servidor para farm na fábrica
+        ["Auto Bartilo Quest"] = "desativado",  -- Completa a missão do Bartilo automaticamente
+        ["Auto True Triple Katana"] = "desativado", -- Obtém a True Triple Katana automaticamente
+        ["Auto Rengoku"] = "desativado",        -- Obtém a Rengoku automaticamente
+        ["Auto Swan Glasses"] = "desativado",   -- Obtém os óculos do Swan automaticamente
+        ["Auto Dark Coat"] = "desativado",      -- Obtém o Dark Coat automaticamente
+        ["Auto Ectoplasm"] = "desativado",      -- Farm de Ectoplasma automaticamente
+        ["Auto Buy Legendary Sword"] = "desativado", -- Compra espadas lendárias automaticamente
+        ["Auto Buy Enchanment Haki"] = "desativado", -- Compra Encantamento Haki automaticamente
+        
+        -- MUNDO 3 (Terceiro Mar)
+        ["Auto Holy Torch"] = "desativado",     -- Obtém Tocha Sagrada automaticamente
+        ["Auto Buddy Swords"] = "desativado",   -- Obtém Espadas Companheiras automaticamente
+        ["Auto Farm Boss Hallow"] = "desativado", -- Farm do Chefe Hallow automaticamente
+        ["Auto Rainbow Haki"] = "desativado",   -- Obtém Haki Arco-íris automaticamente
+        ["Auto Elite Hunter"] = "desativado",   -- Farm de Caçador de Elite automaticamente
+        ["Auto Musketeer Hat"] = "desativado",  -- Obtém Chapéu de Mosqueteiro automaticamente
+        ["Auto Buddy Sword"] = "desativado",    -- Obtém Espada Companheira automaticamente
+        ["Auto Farm Bone"] = "desativado",      -- Farm de ossos automaticamente
+        ["Auto Ken-Haki V2"] = "desativado",    -- Obtém Ken-Haki V2 automaticamente
+        ["Auto Cavander"] = "desativado",       -- Obtém Cavander automaticamente
+        ["Auto Yama Sword"] = "desativado",     -- Obtém Espada Yama automaticamente
+        ["Auto Tushita Sword"] = "desativado",  -- Obtém Espada Tushita automaticamente
+        ["Auto Serpent Bow"] = "desativado",    -- Obtém Arco da Serpente automaticamente
+        ["Auto Dark Dagger"] = "desativado",    -- Obtém Adaga Negra automaticamente
+        ["Auto Cake Prince"] = "desativado",    -- Farm do Príncipe do Bolo automaticamente
+        ["Auto Dough V2"] = "desativado",       -- Obtém Massa V2 automaticamente
+        ["Auto Random Bone"] = "desativado",    -- Farm de ossos aleatórios automaticamente
+        
+        -- Recursos para Humano Divino
+        ["Auto Fish Tail Sea 1"] = "desativado", -- Coleta Cauda de Peixe no Mar 1
+        ["Auto Fish Tail Sea 3"] = "desativado", -- Coleta Cauda de Peixe no Mar 3
+        ["Auto Magma Ore Sea 1"] = "desativado", -- Coleta Minério de Magma no Mar 1
+        ["Auto Magma Ore Sea 2"] = "desativado", -- Coleta Minério de Magma no Mar 2
+        ["Auto Mystic Droplet"] = "desativado",  -- Coleta Gota Mística automaticamente
+        ["Auto Dragon Scales"] = "desativado",   -- Coleta Escamas de Dragão automaticamente
+    },
+    
+    -- ====================== ESTILOS DE LUTA ======================
+    FightingStyle = {
+        ["Auto God Human"] = "desativado",             -- Obtém Humano Divino automaticamente
+        ["Auto Superhuman"] = "desativado",            -- Obtém Super-humano automaticamente
+        ["Auto Electric Claw"] = "desativado",         -- Obtém Garra Elétrica automaticamente
+        ["Auto Death Step"] = "desativado",            -- Obtém Passo da Morte automaticamente
+        ["Auto Fully Death Step"] = "desativado",      -- Obtém Passo da Morte Completo automaticamente
+        ["Auto SharkMan Karate"] = "desativado",       -- Obtém Karatê do Homem-Tubarão automaticamente
+        ["Auto Fully SharkMan Karate"] = "desativado", -- Obtém Karatê do Homem-Tubarão Completo automaticamente
+        ["Auto Dragon Talon"] = "desativado",          -- Obtém Garra de Dragão automaticamente
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE CHEFE ======================
+    Boss = {
+        ["Auto All Boss"] = "desativado",    -- Farm de todos os chefes automaticamente
+        ["Auto Boss Select"] = "desativado", -- Farm de chefes selecionados
+        ["Select Boss"] = {},                -- Lista de chefes selecionados (deixe vazio para nenhum)
+        ["Auto Quest"] = "desativado",       -- Aceita missões de chefe automaticamente
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE MAESTRIA ======================
+    Mastery = {
+        ["Select Multi Sword"] = {},               -- Lista de espadas para maestria
+        ["Farm Mastery SwordList"] = "desativado", -- Farm de maestria das espadas selecionadas
+        ["Auto Farm Fruit Mastery"] = "desativado", -- Farm de maestria de frutas automaticamente
+        ["Auto Farm Gun Mastery"] = "desativado",   -- Farm de maestria de armas automaticamente
+        ["Mob Health (%)"] = 15,                    -- % de vida do mob para usar habilidades (ideal: 15%)
+    },
+    
+    -- ====================== CONFIGURAÇÕES GERAIS ======================
+    Configs = {
+        -- Missão e Equipe
+        ["Double Quest"] = "desativado",     -- Pega duas missões simultaneamente
+        ["Bypass TP"] = "desativado",        -- Bypass para teleporte
+        ["Select Team"] = {"Pirate"},        -- Equipe selecionada: "Pirate" (Pirata) ou "Marine" (Marinha)
+        
+        -- Combate
+        ["Fast Attack"] = "ativo",           -- Ataque rápido ativado
+        ["Fast Attack Type"] = {"Fast"},     -- Tipo de ataque rápido: "Normal", "Fast" (Rápido), "Slow" (Lento)
+        ["Select Weapon"] = {},              -- Armas selecionadas (deixe vazio para auto-selecionar)
+        
+        -- Configurações Diversas
+        ["Auto Haki"] = "ativo",             -- Ativa Haki automaticamente
+        ["Distance Auto Farm"] = 20,         -- Distância para auto farm (máx: 50)
+        ["Camera Shaker"] = "desativado",    -- Desativa tremor de câmera
+        
+        -- Habilidades
+        ["Skill Z"] = "ativo",               -- Usa habilidade Z automaticamente
+        ["Skill X"] = "ativo",               -- Usa habilidade X automaticamente
+        ["Skill C"] = "ativo",               -- Usa habilidade C automaticamente
+        ["Skill V"] = "ativo",               -- Usa habilidade V automaticamente
+        
+        -- Mobs
+        ["Show Hitbox"] = "desativado",      -- Mostra hitbox dos mobs
+        ["Bring Mob"] = "ativo",             -- Traz mobs para perto
+        ["Disabled Damage"] = "desativado",  -- Desativa dano recebido
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE ESTATÍSTICAS ======================
+    Stat = {
+        -- Auto Estatísticas
+        ["Enabled Auto Stats"] = "desativado",    -- Distribui pontos automaticamente
+        ["Auto Stats Kaitun"] = "desativado",     -- Distribui pontos estilo Kaitun
+        ["Select Stats"] = {"Melee"},             -- Estatísticas: "Max Stats" (Estatísticas Máximas), "Melee" (Corpo a Corpo), "Defense" (Defesa), "Sword" (Espada), "Devil Fruit" (Fruta do Diabo), "Gun" (Arma)
+        ["Point Select"] = 3,                     -- Pontos por vez (recomendado: 3, máx: 9)
+        
+        -- Auto Resgatar Código
+        ["Enabled Auto Redeem Code"] = "desativado", -- Resgata códigos automaticamente
+        ["Select Level Redeem Code"] = 1,            -- Nível para resgatar códigos (máx: 2400)
+    },
+    
+    -- ====================== CONFIGURAÇÕES DIVERSAS ======================
+    Misc = {
+        -- Sem Tempo de Recarga de Habilidades
+        ["No Soru Cooldown"] = "desativado",     -- Remove tempo de recarga do Soru
+        ["No Dash Cooldown"] = "desativado",     -- Remove tempo de recarga do Dash
+        ["Infinities Geppo"] = "desativado",     -- Geppo infinito
+        ["Infinities Energy"] = "desativado",    -- Energia infinita
+        
+        -- Visual e Movimento
+        ["No Fog"] = "desativado",              -- Remove névoa
+        ["Wall-TP"] = "desativado",             -- Teleporte através de paredes
+        ["Fly"] = "desativado",                 -- Modo voar
+        ["Fly Speed"] = 1,                      -- Velocidade do voo
+        
+        -- Servidor
+        ["Auto Rejoin"] = "ativo",              -- Reconecta automaticamente
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE TELEPORTE ======================
+    Teleport = {
+        ["Teleport to Sea Beast"] = "desativado", -- Teleporta para Besta Marinha
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE FRUTAS ======================
+    Fruits = {
+        ["Auto Buy Random Fruits"] = "desativado",     -- Compra frutas aleatórias
+        ["Auto Store Fruits"] = "desativado",          -- Armazena frutas automaticamente
+        ["Select Devil Fruits"] = {},                  -- Frutas do Diabo selecionadas
+        ["Auto Buy Devil Fruits Sniper"] = "desativado", -- Compra frutas específicas
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE INCURSÕES ======================
+    Raids = {
+        ["Auto Raids"] = "desativado",         -- Participa de incursões automaticamente
+        ["Kill Aura"] = "desativado",          -- Mata inimigos próximos
+        ["Auto Awakened"] = "desativado",      -- Desperta frutas automaticamente
+        ["Auto Next Place"] = "desativado",    -- Vai ao próximo lugar automaticamente
+        ["Select Raids"] = {},                 -- Incursões selecionadas
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE COMBATE ======================
+    Combat = {
+        ["Fov Size"] = 200,                   -- Tamanho do campo de visão
+        ["Show Fov"] = "desativado",          -- Mostra o campo de visão
+        ["Aimbot Skill"] = "desativado",      -- Mira automática para habilidades
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE INTERFACE ======================
+    HUD = {
+        ["FPS"] = 60,                         -- Limite de FPS
+        ["LockFPS"] = "ativo",                -- Trava os FPS no valor definido
+        ["Boost FPS Windows"] = "desativado", -- Melhora FPS (Windows)
+        ["White Screen"] = "desativado",      -- Ativa tela branca (melhora performance)
+    },
+    
+    -- ====================== CONFIGURAÇÕES DE APARÊNCIA DA UI ======================
+    ConfigsUI = {
+        ColorUI = Color3.fromRGB(255, 0, 127), -- Cor da UI (rosa)
+    }
+}
+
+-- Carrega o script principal (substitua pelo link correto)
+loadstring(game:HttpGet("LINK-DO-SCRIPT-PRINCIPAL"))()
