@@ -63,7 +63,7 @@ function InterfaceModule.CreateUI()
     WeaponButton.Position = UDim2.new(0.05, 0, 0.05, 0)
     WeaponButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
     WeaponButton.Text = "Arma: " .. _G.SelectWeapon
-    WeaponButton.TextColor3 = Color3.fromRGB(255,255,255)
+    WeaponButton.TextColor3 = Color3.fromRGB(255, 255, 255)
     WeaponButton.TextSize = 16
     WeaponButton.Font = Enum.Font.SourceSans
     WeaponButton.Parent = MainFrame
@@ -144,10 +144,11 @@ function InterfaceModule.CreateUI()
     HitboxSlider.Text = ""
     HitboxSlider.Parent = HitboxSliderFrame
 
+    -- Posiciona o valor da hitbox logo abaixo do slider
     local HitboxValue = Instance.new("TextLabel")
     HitboxValue.Name = "HitboxValue"
     HitboxValue.Size = UDim2.new(0.9, 0, 0, 20)
-    HitboxValue.Position = UDim2.new(0.05, 0, 0.8, 0)
+    HitboxValue.Position = UDim2.new(0.05, 0, 0.70, 0)
     HitboxValue.BackgroundTransparency = 1
     HitboxValue.Text = "Hitbox Size: " .. Config.HitboxSize
     HitboxValue.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -155,10 +156,11 @@ function InterfaceModule.CreateUI()
     HitboxValue.Font = Enum.Font.SourceSans
     HitboxValue.Parent = MainFrame
 
+    -- Posiciona o status abaixo do valor da hitbox
     local StatusLabel = Instance.new("TextLabel")
     StatusLabel.Name = "StatusLabel"
     StatusLabel.Size = UDim2.new(0.9, 0, 0, 50)
-    StatusLabel.Position = UDim2.new(0.05, 0, 0.8, 0)
+    StatusLabel.Position = UDim2.new(0.05, 0, 0.80, 0)
     StatusLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
     StatusLabel.BorderColor3 = Color3.fromRGB(80, 80, 80)
     StatusLabel.Text = "Status: Aguardando"
@@ -167,7 +169,31 @@ function InterfaceModule.CreateUI()
     StatusLabel.Font = Enum.Font.SourceSans
     StatusLabel.Parent = MainFrame
 
-    -- Retorna os elementos de UI e botões para que possam ser configurados pelo módulo de lógica
+    -- Lógica para controle do slider de Hitbox
+    local isDragging = false
+    HitboxSlider.MouseButton1Down:Connect(function()
+        isDragging = true
+    end)
+
+    UserInputService.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            isDragging = false
+        end
+    end)
+
+    UserInputService.InputChanged:Connect(function(input)
+        if isDragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+            local mousePos = UserInputService:GetMouseLocation()
+            local framePos = HitboxSliderFrame.AbsolutePosition
+            local frameSize = HitboxSliderFrame.AbsoluteSize
+            local relativeX = math.clamp((mousePos.X - framePos.X) / frameSize.X, 0, 1)
+            HitboxSlider.Size = UDim2.new(relativeX, 0, 1, 0)
+            Config.HitboxSize = math.floor(1 + relativeX * 9)
+            HitboxValue.Text = "Hitbox Size: " .. Config.HitboxSize
+        end
+    end)
+
+    -- Retorna os elementos de UI para que possam ser configurados pelo módulo de lógica
     local elements = {
         StatusLabel = StatusLabel,
         AutoFarmButton = AutoFarmButton,
