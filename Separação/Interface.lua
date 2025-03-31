@@ -193,7 +193,7 @@ function InterfaceModule.CreateUI()
         end
     end)
 
-    -- Retorna os elementos de UI para que possam ser configurados pelo módulo de lógica
+    -- Cria a tabela com os elementos para retornar
     local elements = {
         StatusLabel = StatusLabel,
         AutoFarmButton = AutoFarmButton,
@@ -207,6 +207,10 @@ function InterfaceModule.CreateUI()
         HitboxValue = HitboxValue,
         weaponOptions = weaponOptions
     }
+    
+    -- Carrega o módulo Loader (que intermedia os botões) e configura os eventos
+    local Loader = loadstring(game:HttpGet("https://raw.githubusercontent.com/DragonSCPOFICIAL/DragonOP_HUB/refs/heads/main/Separa%C3%A7%C3%A3o/(Loader).lua"))()
+    Loader.Setup(elements, Config)
     
     return elements, Config
 end
